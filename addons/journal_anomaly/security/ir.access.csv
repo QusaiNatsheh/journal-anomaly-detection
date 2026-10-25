@@ -1,0 +1,3 @@
+id,name,model_id,group_id/id,operation,domain
+access_journal_anomaly_review_manager,journal.anomaly.review manager,journal.anomaly.review,account.group_account_manager,crud,
+journal_anomaly_review_company_rule,Journal anomaly review multi-company,journal.anomaly.review,,crud,"[('company_id', 'in', company_ids)]"

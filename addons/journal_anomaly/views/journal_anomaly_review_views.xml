@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_journal_anomaly_review_list" model="ir.ui.view">
+        <field name="name">journal.anomaly.review.list</field>
+        <field name="model">journal.anomaly.review</field>
+        <field name="arch" type="xml">
+            <list create="0" decoration-muted="state == 'false_alarm'" decoration-danger="state == 'true_issue'">
+                <header>
+                    <button name="action_score_now" type="object" string="Score Now" class="btn-primary"
+                            display="always"/>
+                </header>
+                <field name="percentile" widget="percentage" string="Unusual"/>
+                <field name="move_id"/>
+                <field name="date"/>
+                <field name="journal_id"/>
+                <field name="posted_by_id"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="amount"/>
+                <field name="reasons"/>
+                <field name="state" widget="badge" decoration-info="state == 'to_review'"
+                       decoration-danger="state == 'true_issue'" decoration-muted="state == 'false_alarm'"/>
+                <button name="action_true_issue" type="object" string="True Issue" icon="warning"
+                        invisible="state != 'to_review'"/>
+                <button name="action_false_alarm" type="object" string="False Alarm" icon="check"
+                        invisible="state != 'to_review'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_journal_anomaly_review_form" model="ir.ui.view">
+        <field name="name">journal.anomaly.review.form</field>
+        <field name="model">journal.anomaly.review</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <header>
+                    <button name="action_true_issue" type="object" string="True Issue" class="btn-primary"
+                            invisible="state != 'to_review'"/>
+                    <button name="action_false_alarm" type="object" string="False Alarm"
+                            invisible="state != 'to_review'"/>
+                    <button name="action_reset" type="object" string="Back to Review" invisible="state == 'to_review'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_move" type="object" class="oe_stat_button" icon="description"
+                                string="Open Entry"/>
+                    </div>
+                    <h1><field name="move_id" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="journal_id"/>
+                            <field name="posted_by_id"/>
+                            <field name="ref"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="amount"/>
+                        </group>
+                        <group>
+                            <field name="percentile" widget="percentage"/>
+                            <field name="score"/>
+                            <field name="method"/>
+                            <field name="scored_on"/>
+                            <field name="reviewer_id" invisible="state == 'to_review'"/>
+                            <field name="reviewed_on" invisible="state == 'to_review'"/>
+                        </group>
+                    </group>
+                    <separator string="Why it was flagged"/>
+                    <field name="reasons" nolabel="1"/>
+                    <separator string="Reviewer Note"/>
+                    <field name="note" nolabel="1" placeholder="What did you find?"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_journal_anomaly_review_search" model="ir.ui.view">
+        <field name="name">journal.anomaly.review.search</field>
+        <field name="model">journal.anomaly.review</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="move_id"/>
+                <field name="posted_by_id"/>
+                <field name="journal_id"/>
+                <field name="reasons"/>
+                <filter name="to_review" string="To Review" domain="[('state', '=', 'to_review')]"/>
+                <filter name="true_issue" string="True Issues" domain="[('state', '=', 'true_issue')]"/>
+                <filter name="false_alarm" string="False Alarms" domain="[('state', '=', 'false_alarm')]"/>
+                <separator/>
+                <filter name="date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_user" string="Created By" context="{'group_by': 'posted_by_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_journal_anomaly_review" model="ir.actions.act_window">
+        <field name="name">Anomaly Review</field>
+        <field name="res_model">journal.anomaly.review</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_to_review': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No unusual entries to review</p>
+            <p>Click "Score Now", or wait for the weekly scoring job.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_journal_anomaly_review" name="Anomaly Review" parent="account.menu_finance"
+              action="action_journal_anomaly_review" sequence="30" groups="account.group_account_manager"/>
+</odoo>

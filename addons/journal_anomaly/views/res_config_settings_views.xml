@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.journal_anomaly</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="Journal Entry Anomaly Detection" name="journal_anomaly_setting_container">
+                    <setting id="journal_anomaly_service" string="Anomaly Service"
+                             help="Address of the ML service that scores journal entries">
+                        <field name="journal_anomaly_service_url"/>
+                        <div class="mt8">
+                            <button name="action_journal_anomaly_score_now" type="object" string="Score Now"
+                                    class="btn-link" icon="east"/>
+                        </div>
+                    </setting>
+                    <setting id="journal_anomaly_window" string="History and Review Period"
+                             help="Months of history used to learn what is normal, and days of recent entries to review">
+                        <div class="row"><label for="journal_anomaly_history_months" class="col-lg-5"/>
+                            <field name="journal_anomaly_history_months"/></div>
+                        <div class="row"><label for="journal_anomaly_review_days" class="col-lg-5"/>
+                            <field name="journal_anomaly_review_days"/></div>
+                        <div class="row"><label for="journal_anomaly_max_results" class="col-lg-5"/>
+                            <field name="journal_anomaly_max_results"/></div>
+                    </setting>
+                    <setting id="journal_anomaly_rules" string="Company Rules"
+                             help="Approval limit and weekend days (Monday = 0)">
+                        <div class="row"><label for="journal_anomaly_approval_limit" class="col-lg-5"/>
+                            <field name="journal_anomaly_approval_limit"/></div>
+                        <div class="row"><label for="journal_anomaly_weekend_days" class="col-lg-5"/>
+                            <field name="journal_anomaly_weekend_days"/></div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

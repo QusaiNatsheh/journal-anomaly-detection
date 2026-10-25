@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_score" model="ir.cron">
+        <field name="name">Journal Anomaly: score recent entries</field>
+        <field name="model_id" ref="model_journal_anomaly_review"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_score()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">weeks</field>
+    </record>
+</odoo>

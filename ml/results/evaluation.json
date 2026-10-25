@@ -1,0 +1,272 @@
+{
+  "params": {
+    "iforest": {
+      "n_estimators": 300,
+      "max_features": 0.5
+    },
+    "lof": {
+      "n_neighbors": 50
+    },
+    "autoencoder": {
+      "hidden": [
+        12,
+        4,
+        12
+      ]
+    },
+    "ensemble": {
+      "members": [
+        "surprise_sum",
+        "lof",
+        "autoencoder"
+      ],
+      "combine": "max",
+      "member_params": {
+        "iforest": {
+          "n_estimators": 300,
+          "max_features": 0.5
+        },
+        "lof": {
+          "n_neighbors": 50
+        },
+        "autoencoder": {
+          "hidden": [
+            12,
+            4,
+            12
+          ]
+        }
+      }
+    }
+  },
+  "summary": {
+    "rules": {
+      "precision_at_50": {
+        "mean": 0.5800000000000001,
+        "std": 0.07118052168020875
+      },
+      "precision_at_100": {
+        "mean": 0.42333333333333334,
+        "std": 0.016996731711975938
+      },
+      "recall_at_100": {
+        "mean": 0.6602528266727102,
+        "std": 0.04497735903099735
+      },
+      "recall_at_2pct": {
+        "mean": 0.7626904384175669,
+        "std": 0.028702693240465583
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 11.413239832836423,
+        "std": 0.4009793442031361
+      },
+      "average_precision": {
+        "mean": 0.5499000806070561,
+        "std": 0.05355442331474396
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.4444444444444444,
+        "below_limit": 1.0,
+        "duplicate": 0.6603174603174603,
+        "night": 0.6904761904761904,
+        "round_amount": 1.0,
+        "unusual_pair": 1.0,
+        "weekend": 0.5750000000000001,
+        "wrong_user": 0.0
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    },
+    "surprise_sum": {
+      "precision_at_50": {
+        "mean": 0.5466666666666667,
+        "std": 0.033993463423951896
+      },
+      "precision_at_100": {
+        "mean": 0.33,
+        "std": 0.014142135623730937
+      },
+      "recall_at_100": {
+        "mean": 0.5154163833698472,
+        "std": 0.04431232760338139
+      },
+      "recall_at_2pct": {
+        "mean": 0.5304046737679736,
+        "std": 0.03302895690955241
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 14.018045870058678,
+        "std": 0.18348071652095502
+      },
+      "average_precision": {
+        "mean": 0.485332201382942,
+        "std": 0.034442043801333616
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.6111111111111112,
+        "below_limit": 1.0,
+        "duplicate": 0.03333333333333333,
+        "night": 0.24285714285714285,
+        "round_amount": 1.0,
+        "unusual_pair": 0.9212962962962963,
+        "weekend": 0.25,
+        "wrong_user": 0.14537037037037037
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    },
+    "iforest": {
+      "precision_at_50": {
+        "mean": 0.45999999999999996,
+        "std": 0.03265986323710905
+      },
+      "precision_at_100": {
+        "mean": 0.2866666666666667,
+        "std": 0.016996731711975938
+      },
+      "recall_at_100": {
+        "mean": 0.4478935307597391,
+        "std": 0.04503430076251584
+      },
+      "recall_at_2pct": {
+        "mean": 0.4587343557200776,
+        "std": 0.05111238304966108
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 14.829415325041571,
+        "std": 0.2899473981874245
+      },
+      "average_precision": {
+        "mean": 0.3950172550476929,
+        "std": 0.03456588363170571
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.5,
+        "below_limit": 0.9333333333333332,
+        "duplicate": 0.0,
+        "night": 0.0,
+        "round_amount": 1.0,
+        "unusual_pair": 0.9583333333333334,
+        "weekend": 0.21666666666666667,
+        "wrong_user": 0.03333333333333333
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    },
+    "lof": {
+      "precision_at_50": {
+        "mean": 0.49333333333333335,
+        "std": 0.09977753031397177
+      },
+      "precision_at_100": {
+        "mean": 0.4366666666666666,
+        "std": 0.03771236166328255
+      },
+      "recall_at_100": {
+        "mean": 0.6778071567072096,
+        "std": 0.01630485799833776
+      },
+      "recall_at_2pct": {
+        "mean": 0.7037244088539699,
+        "std": 0.030151456442059396
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 12.051522887403236,
+        "std": 0.713801292260462
+      },
+      "average_precision": {
+        "mean": 0.5002625598921492,
+        "std": 0.052628156255852244
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.3888888888888889,
+        "below_limit": 1.0,
+        "duplicate": 1.0,
+        "night": 1.0,
+        "round_amount": 0.0,
+        "unusual_pair": 0.5601851851851852,
+        "weekend": 0.4916666666666667,
+        "wrong_user": 0.9629629629629629
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    },
+    "autoencoder": {
+      "precision_at_50": {
+        "mean": 0.6266666666666667,
+        "std": 0.16027753706895076
+      },
+      "precision_at_100": {
+        "mean": 0.4566666666666666,
+        "std": 0.012472191289246462
+      },
+      "recall_at_100": {
+        "mean": 0.7117347838130493,
+        "std": 0.03378113945287079
+      },
+      "recall_at_2pct": {
+        "mean": 0.7409206517085947,
+        "std": 0.011631008205032736
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 11.645185585646127,
+        "std": 0.5291252539943089
+      },
+      "average_precision": {
+        "mean": 0.6284336817664429,
+        "std": 0.08685322266893361
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.16666666666666666,
+        "below_limit": 1.0,
+        "duplicate": 0.9444444444444445,
+        "night": 0.9666666666666667,
+        "round_amount": 1.0,
+        "unusual_pair": 0.8518518518518517,
+        "weekend": 0.3666666666666667,
+        "wrong_user": 0.3796296296296296
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    },
+    "ensemble": {
+      "precision_at_50": {
+        "mean": 0.7133333333333333,
+        "std": 0.033993463423951896
+      },
+      "precision_at_100": {
+        "mean": 0.5,
+        "std": 0.021602468994692887
+      },
+      "recall_at_100": {
+        "mean": 0.7782050313515146,
+        "std": 0.019047269813130478
+      },
+      "recall_at_2pct": {
+        "mean": 0.8081816121477677,
+        "std": 0.025625273051471865
+      },
+      "false_alarms_per_1000_at_2pct": {
+        "mean": 10.892689916089557,
+        "std": 0.6303408582316214
+      },
+      "average_precision": {
+        "mean": 0.7372714644728683,
+        "std": 0.030843972117361007
+      },
+      "recall_at_100_by_type": {
+        "amount_outlier": 0.5555555555555555,
+        "below_limit": 1.0,
+        "duplicate": 0.9722222222222222,
+        "night": 1.0,
+        "round_amount": 1.0,
+        "unusual_pair": 0.8925925925925925,
+        "weekend": 0.30833333333333335,
+        "wrong_user": 0.512962962962963
+      },
+      "n_entries": 5754,
+      "n_anomalies": 64
+    }
+  }
+}
